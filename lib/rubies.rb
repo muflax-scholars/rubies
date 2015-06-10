@@ -39,9 +39,11 @@ module Rubies
     end
 
     def self.build_parser
+      name = File.basename($PROGRAM_NAME)
+
       parser = OptionParser.new do |opts|
         opts.banner = dedent(<<-END)
-        Usage: #{$PROGRAM_NAME} [options]
+        Usage: #{name} [options]
         END
 
         opts.on("-h", "--help", "Show this message") do |v|
@@ -52,12 +54,12 @@ module Rubies
         opts.separator("Available commands:")
         opts.separator("")
         opts.separator(dedent(<<-END))
-        #{$PROGRAM_NAME} activate [ruby-name] [gem-path]
+        #{name} activate [ruby-name] [gem-path]
           Activates the named Ruby version and sets the gem path. The specified
           Ruby will be on $PATH. Gems will be installed to the specified gem
           path. Globally installed gems will still be visible.
 
-        #{$PROGRAM_NAME} deactivate
+        #{name} deactivate
           Undo whatever any previous activate did.
         END
       end
